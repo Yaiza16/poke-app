@@ -1,5 +1,1 @@
-export type {
-  PokemonAPIResourceList,
-  PokemonAPIResourceItem,
-  PokemonAPIListParams,
-} from './pokemon'
+export type { PokemonAPIResourceList, PokemonAPIResourceItem, PokemonAPIListParams, Pokemon } from './pokemon'

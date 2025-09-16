@@ -2,16 +2,10 @@
 
 import { usePokemonList } from '@/lib/queries'
 import React, { useEffect, useRef } from 'react'
+import PokemonCard from './PokemonCard'
 
 const PokemonList = () => {
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isLoading,
-    error,
-  } = usePokemonList({ limit: 20 })
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = usePokemonList({ limit: 20 })
 
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
@@ -20,7 +14,6 @@ const PokemonList = () => {
       entries => {
         const [entry] = entries
         if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          console.log('🚀 Loading more Pokemon...')
           fetchNextPage()
         }
       },
@@ -36,8 +29,7 @@ const PokemonList = () => {
 
   if (isLoading) <div className="p-8 text-center">Cargando Pokemon...</div>
 
-  if (error)
-    <div className="p-8 text-center text-red-500">Error: {error.message}</div>
+  if (error) <div className="p-8 text-center text-red-500">Error: {error.message}</div>
 
   const allPokemon = data?.pages.flatMap(page => page.pokemon) || []
   const count = data?.pages[0]?.count || 0
@@ -50,25 +42,13 @@ const PokemonList = () => {
 
       <div className="space-y-2">
         {allPokemon.map((pokemon, index) => (
-          <div
-            key={pokemon.name}
-            className="p-2 border rounded hover:bg-gray-50"
-          >
-            #{index + 1} - {pokemon.name}
-          </div>
+          <PokemonCard key={pokemon.name} pokemonBasic={pokemon} />
         ))}
       </div>
 
-      {isFetchingNextPage && (
-        <div className="p-4 text-center text-blue-500">
-          Cargando más Pokemon...
-        </div>
-      )}
+      {isFetchingNextPage && <div className="p-4 text-center text-blue-500">Cargando más Pokemon...</div>}
 
-      <div
-        ref={loadMoreRef}
-        className="h-10 w-full flex items-center justify-center text-gray-400"
-      >
+      <div ref={loadMoreRef} className="h-10 w-full flex items-center justify-center text-gray-400">
         {!hasNextPage && '¡Todos cargados!'}
       </div>
     </div>

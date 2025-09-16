@@ -2,10 +2,7 @@ export interface PokemonAPIResourceList {
   count: number
   next: string | null
   previous: string | null
-  results: Array<{
-    name: string
-    url: string
-  }>
+  results: PokemonAPIResourceItem[]
 }
 
 export interface PokemonAPIResourceItem {
@@ -16,4 +13,26 @@ export interface PokemonAPIResourceItem {
 export interface PokemonAPIListParams {
   limit?: number
   offset?: number
+}
+
+interface PokemonType {
+  slot: number
+  type: PokemonAPIResourceItem
+}
+
+interface PokemonSprite {
+  front_default: string
+  other: {
+    home: {
+      front_default: string
+    }
+  }
+}
+
+export interface Pokemon {
+  id: number
+  name: string
+  base_experience: number
+  types: PokemonType[]
+  sprites: PokemonSprite
 }
