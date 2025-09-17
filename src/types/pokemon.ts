@@ -36,3 +36,9 @@ export interface Pokemon {
   types: PokemonType[]
   sprites: PokemonSprite
 }
+
+export interface PokemonSpecies {
+  id: number
+  name: string
+  generation: PokemonAPIResourceItem
+}
