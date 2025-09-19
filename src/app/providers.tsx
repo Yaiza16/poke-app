@@ -10,10 +10,10 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
-            gcTime: 10 * 60 * 1000,
+            staleTime: Infinity,
+            gcTime: 1000 * 60 * 60 * 24,
             refetchOnWindowFocus: false,
-            retry: 3,
+            retry: 1,
           },
         },
       })

@@ -1,1 +1,1 @@
-export { usePokemonList } from './use-pokemon-list'
+export { usePokemonList } from './usePokemonList'

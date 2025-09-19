@@ -5,6 +5,11 @@ export interface PokemonAPIResourceList {
   results: PokemonAPIResourceItem[]
 }
 
+export interface PokemonBasicItem {
+  name: string
+  id: number
+}
+
 export interface PokemonAPIResourceItem {
   name: string
   url: string
@@ -23,6 +28,9 @@ interface PokemonType {
 interface PokemonSprite {
   front_default: string
   other: {
+    ['official-artwork']: {
+      front_default: string
+    }
     home: {
       front_default: string
     }
@@ -41,4 +49,18 @@ export interface PokemonSpecies {
   id: number
   name: string
   generation: PokemonAPIResourceItem
+}
+
+// Pokemon Types
+export interface TypePokemonResponse {
+  pokemon: Array<{
+    pokemon: PokemonAPIResourceItem
+  }>
+}
+
+export interface GenerationPokemonResponse {
+  pokemon_species: Array<{
+    name: string
+    url: string
+  }>
 }

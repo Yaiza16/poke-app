@@ -4,7 +4,7 @@ import { PokemonService } from '../api'
 const usePokemonSpecies = (id: number) => {
   return useQuery({
     queryKey: ['pokemon-species', id],
-    queryFn: () => PokemonService.getPokemonSpeciesById(id),
+    queryFn: () => PokemonService.getPokemonSpecieByPokemonId(id),
   })
 }
 
