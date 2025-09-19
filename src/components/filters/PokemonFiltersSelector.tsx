@@ -1,9 +1,9 @@
 import useAllPokemonTypes from '@/lib/queries/useAllPokemonTypes'
 import { usePokemonFiltersStore } from '@/lib/stores/pokemon-filters-store'
-import SelectFilter from './SelectFilter'
 import { capitalize } from '@/lib/utilities'
 import useAllPokemonGenerations from '@/lib/queries/useAllPokemonGenerations'
-import SkeletonPokemonFilterInput from './skeletons/SkeletonPokemonFilterInput'
+import SkeletonPokemonFilterInput from '../skeletons/SkeletonPokemonFilterInput'
+import SelectFilter from './SelectFilter'
 
 const PokemonFiltersSelector = () => {
   const { filters, setType, setGeneration } = usePokemonFiltersStore()
@@ -20,14 +20,14 @@ const PokemonFiltersSelector = () => {
         placeholder="All Types"
         data={types.map(type => ({ value: type, label: capitalize(type) }))}
         currentValue={filters.type}
-        setValue={setType}
+        onValueChange={setType}
       />
 
       <SelectFilter
         placeholder="All Generations"
         data={generations.map(gen => ({ value: gen, label: capitalize(gen.split('-')[1]) }))}
         currentValue={filters.generation}
-        setValue={setGeneration}
+        onValueChange={setGeneration}
       />
     </>
   )

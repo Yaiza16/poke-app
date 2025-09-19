@@ -1,16 +1,24 @@
 import React from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 
-interface SelectFilterProps {
-  data: { value: string; label: string }[]
-  placeholder: string
-  currentValue: string
-  setValue: (value: string) => void
+interface SelectOption {
+  value: string
+  label: string
 }
 
-const SelectFilter = ({ data, placeholder, currentValue, setValue }: SelectFilterProps) => {
+interface SelectFilterProps {
+  data: SelectOption[]
+  placeholder: string
+  currentValue: string
+  onValueChange: (value: string) => void
+}
+
+const SelectFilter = ({ data, placeholder, currentValue, onValueChange }: SelectFilterProps) => {
+  const handleValueChange = (value: string) => {
+    onValueChange(value === 'all' ? '' : value)
+  }
   return (
-    <Select value={currentValue || 'all'} onValueChange={v => setValue(v === 'all' ? '' : v)}>
+    <Select value={currentValue || 'all'} onValueChange={handleValueChange}>
       <SelectTrigger className="w-full sm:w-[140px] glass border-border text-foreground">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
