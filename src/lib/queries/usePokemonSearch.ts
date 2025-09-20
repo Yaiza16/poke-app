@@ -37,7 +37,9 @@ export const usePokemonSearch = (allPokemon: PokemonBasicItem[], searchTerm: str
       .flat()
 
     const evolutionMatches = allPokemon.filter(
-      pokemon => evolutionFamilies.includes(pokemon.name) && !directMatches.some(direct => direct.id === pokemon.id)
+      pokemon =>
+        evolutionFamilies.map(family => family.name).includes(pokemon.name) &&
+        !directMatches.some(direct => direct.id === pokemon.id)
     )
 
     return [...directMatches, ...evolutionMatches]

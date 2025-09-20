@@ -1,13 +1,19 @@
-import { EvolutionChainLink, EvolutionChainResponse } from "@/types"
+import { EvolutionChainLink, EvolutionChainResponse } from '@/types'
+import { PokemonBasicItem } from '@/types/pokemon'
 
-export function extractEvolutionFamily(evolutionChainData: EvolutionChainResponse): string[] {
-  const family: string[] = []
-  
+const getIdFromUrl = (url: string): number => {
+  const match = url.match(/\/(\d+)\/$/)
+  return match ? parseInt(match[1], 10) : 0
+}
+
+export function extractEvolutionFamily(evolutionChainData: EvolutionChainResponse): PokemonBasicItem[] {
+  const family: PokemonBasicItem[] = []
+
   function traverse(evolutionData: EvolutionChainLink) {
     if (evolutionData.species?.name) {
-      family.push(evolutionData.species.name)
+      family.push({ name: evolutionData.species.name, id: getIdFromUrl(evolutionData.species.url) })
     }
-    
+
     // Recorrer evoluciones recursivamente
     if (evolutionData.evolves_to && evolutionData.evolves_to.length > 0) {
       evolutionData.evolves_to.forEach((evolution: EvolutionChainLink) => {
@@ -15,7 +21,7 @@ export function extractEvolutionFamily(evolutionChainData: EvolutionChainRespons
       })
     }
   }
-  
+
   traverse(evolutionChainData.chain)
   return family
 }

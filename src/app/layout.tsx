@@ -26,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-r from-slate-900/90 to-slate-800/90`}
+      >
         <Providers>
           <Navbar />
           <main className="min-h-screen">{children}</main>

@@ -43,13 +43,22 @@ export interface PokemonAbility {
   slot: number
 }
 
+export interface PokemonStat {
+  base_stat: number
+  effort: number
+  stat: PokemonAPIResourceItem
+}
+
 export interface Pokemon {
   id: number
   name: string
   base_experience: number
+  height: number
+  weight: number
   types: PokemonType[]
   sprites: PokemonSprite
-  abilities: Array<PokemonAbility>
+  abilities: PokemonAbility[]
+  stats: PokemonStat[]
 }
 
 export interface PokemonSpecies {
