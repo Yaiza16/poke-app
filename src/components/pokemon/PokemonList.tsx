@@ -16,8 +16,8 @@ const PokemonList = () => {
     return <div className="p-8 text-center">No se encontraron Pokémon que coincidan con los filtros.</div>
 
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+    <div className="w-full flex-1">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-auto gap-8 justify-items-center">
         {pokemon.map(pokemon => (
           <PokemonCard key={pokemon.name} pokemonBasic={pokemon} />
         ))}

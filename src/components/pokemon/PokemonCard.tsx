@@ -7,18 +7,29 @@ import { getTypeColors } from '@/lib/constants/pokemon-type-colors'
 import { PokemonBasicItem } from '@/types/pokemon'
 import { capitalize } from '@/lib/utilities'
 import { usePokemonSpecies } from '@/lib/queries'
+import AnimatedStat from './AnimatedStat'
+import TypeBadge from './TypeBadge'
+import PokemonAbilities from './pokemonCardItems/PokemonAbilities'
+import PokemonTypes from './pokemonCardItems/PokemonTypes'
+import { SkeletonPokemonCard } from '../skeletons/SkeletonPokemonCard'
+import { SkeletonPokemonCardError } from '../skeletons'
+
+const formatGeneration = (genName: string) => {
+  const genNumber = genName.split('-')[1]
+  return genNumber ? `Gen ${genNumber.toUpperCase()}` : genName
+}
 
 const PokemonCard = ({ pokemonBasic }: { pokemonBasic: PokemonBasicItem }) => {
   const { data: pokemon, isLoading: pokemonLoading, error: pokemonError } = usePokemon(pokemonBasic.id)
   const { data: species, isLoading: speciesLoading, error: speciesError } = usePokemonSpecies(pokemonBasic.id)
 
-  if (pokemonLoading || speciesLoading) return <div>Loading...</div>
-  if (pokemonError || speciesError) return <div>Error loading Pokemon</div>
+  if (pokemonLoading || speciesLoading) return <SkeletonPokemonCard className="w-[320px] h-[586px]" />
+  if (pokemonError || speciesError) return <SkeletonPokemonCardError className="w-[320px] h-[586px]" />
   if (!pokemon) return <div>No data</div>
 
   return (
     <Card
-      className={`group relative w-80 overflow-hidden bg-gradient-to-br from-slate-800/90 to-slate-900/90 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-3xl hover:brightness-105 border-2 border-${getTypeColors(pokemon.types[0].type.name).main} hover:${getTypeColors(pokemon.types[0].type.name).shadow}`}
+      className={`group relative w-80 overflow-hidden bg-gradient-to-br from-slate-800/90 to-slate-900/90 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-3xl hover:brightness-105 border-2 ${getTypeColors(pokemon.types[0].type.name).border} hover:${getTypeColors(pokemon.types[0].type.name).shadow}`}
     >
       <CardContent className="relative z-10 p-6">
         <div className="mb-4 flex items-center justify-between">
@@ -54,6 +65,18 @@ const PokemonCard = ({ pokemonBasic }: { pokemonBasic: PokemonBasicItem }) => {
         <h2 className={`mb-6 text-center text-2xl font-bold text-slate-100 drop-shadow-lg transition-all duration-300`}>
           {capitalize(pokemon.name)}
         </h2>
+        <div className="mb-6 grid grid-cols-2 gap-4">
+          <AnimatedStat
+            label="Generation"
+            value={species ? formatGeneration(species.generation.name) : 'Loading...'}
+            delay={200}
+            icon="🌟"
+          />
+          <AnimatedStat label="Base EXP" value={pokemon.base_experience?.toString() || 'N/A'} delay={400} icon="⚡" />
+        </div>
+        {pokemon.abilities && pokemon.abilities.length > 0 && <PokemonAbilities pokemon={pokemon} />}
+        {pokemon.types && pokemon.types.length > 0 && <PokemonTypes pokemon={pokemon} />}
+
         {speciesError && <small className="text-yellow-600">⚠️ Generation info unavailable</small>}
       </CardContent>
     </Card>

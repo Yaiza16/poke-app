@@ -37,12 +37,19 @@ interface PokemonSprite {
   }
 }
 
+export interface PokemonAbility {
+  ability: PokemonAPIResourceItem
+  is_hidden: boolean
+  slot: number
+}
+
 export interface Pokemon {
   id: number
   name: string
   base_experience: number
   types: PokemonType[]
   sprites: PokemonSprite
+  abilities: Array<PokemonAbility>
 }
 
 export interface PokemonSpecies {

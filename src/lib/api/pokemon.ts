@@ -1,6 +1,12 @@
 import { EvolutionChainResponse, Pokemon, PokemonAPIResourceList } from '@/types'
 import { apiClient } from './client'
-import { GenerationPokemonResponse, PokemonBasicItem, PokemonSpecies, TypePokemonResponse } from '@/types/pokemon'
+import {
+  GenerationPokemonResponse,
+  PokemonAPIResourceItem,
+  PokemonBasicItem,
+  PokemonSpecies,
+  TypePokemonResponse,
+} from '@/types/pokemon'
 
 const POKEMON_LIMIT_LIST = 1400
 export class PokemonService {
@@ -19,9 +25,9 @@ export class PokemonService {
     return data.results.map(type => type.name)
   }
 
-  static async getAllPokemonGenerations(): Promise<string[]> {
+  static async getAllPokemonGenerations(): Promise<PokemonAPIResourceItem[]> {
     const { data } = await apiClient.get<PokemonAPIResourceList>('generation')
-    return data.results.map(generation => generation.name)
+    return data.results
   }
 
   static async getPokemonByType(type: string): Promise<number[]> {
