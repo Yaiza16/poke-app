@@ -10,7 +10,19 @@ export const usePokemonPagination = () => {
 
   useEffect(() => {
     setCurrentPage(1)
-  }, [filteredCount]) 
+  }, [filteredCount])
+
+  useEffect(() => {
+    const filtersElement = document.getElementById('pokemon-filters')
+    if (filtersElement) {
+      filtersElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentPage])
 
   const pagination = usePagination({
     totalItems: filteredCount,
