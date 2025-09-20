@@ -24,7 +24,7 @@ export class PokemonService {
     return data.results.map(generation => generation.name)
   }
 
-  static async getPokemonesByType(type: string): Promise<number[]> {
+  static async getPokemonByType(type: string): Promise<number[]> {
     const response = await apiClient.get<TypePokemonResponse>(`/type/${type}`)
     return response.data.pokemon.map(p => this.extractIdFromUrl(p.pokemon.url))
   }
@@ -33,7 +33,7 @@ export class PokemonService {
     const { data } = await apiClient.get<Pokemon>(`/pokemon/${id}`)
     return data
   }
-  static async getPokemonesByGeneration(generationId: number): Promise<number[]> {
+  static async getPokemonByGeneration(generationId: number): Promise<number[]> {
     const response = await apiClient.get<GenerationPokemonResponse>(`/generation/${generationId}`)
 
     return response.data.pokemon_species.map(p => this.extractIdFromUrl(p.url))

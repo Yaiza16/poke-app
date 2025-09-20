@@ -11,6 +11,9 @@ const PokemonList = () => {
   if (error) <div className="p-8 text-center text-red-500">Error: {error.message}</div>
   if (!data) return <div className="p-8 text-center">No hay datos disponibles.</div>
 
+  if (data.length === 0)
+    return <div className="p-8 text-center">No se encontraron Pokémon que coincidan con los filtros.</div>
+
   return (
     <div className="p-4">
       <div className="space-y-2">
