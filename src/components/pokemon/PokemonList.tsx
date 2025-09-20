@@ -7,9 +7,8 @@ import PokemonPagination from './PokemonPagination'
 const PokemonList = () => {
   const { pokemon, isLoading, error, pagination } = usePokemonPagination()
 
-  if (isLoading) <div className="p-8 text-center">Cargando Pokemon...</div>
-
-  if (error) <div className="p-8 text-center text-red-500">Error: {error.message}</div>
+  if (isLoading) return <div className="p-8 text-center">Cargando Pokemon...</div>
+  if (error) return <div className="p-8 text-center text-red-500">Error: {error.message}</div>
   if (!pokemon) return <div className="p-8 text-center">No hay datos disponibles.</div>
 
   if (pokemon.length === 0)
