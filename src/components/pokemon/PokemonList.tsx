@@ -3,11 +3,13 @@
 import { usePokemonPagination } from '@/lib/hooks/usePokemonPagination'
 import PokemonCard from './PokemonCard'
 import PokemonPagination from './PokemonPagination'
+import SpinnerLoadingPokemon from '../spinners/SpinnerLoadingPokemon'
 
 const PokemonList = () => {
   const { pokemon, isLoading, error, pagination } = usePokemonPagination()
 
-  if (isLoading) return <div className="p-8 text-center">Cargando Pokemon...</div>
+  if (isLoading) return <SpinnerLoadingPokemon />
+
   if (error) return <div className="p-8 text-center text-red-500">Error: {error.message}</div>
   if (!pokemon) return <div className="p-8 text-center">No hay datos disponibles.</div>
 
