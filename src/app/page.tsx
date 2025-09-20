@@ -1,4 +1,4 @@
-import PokemonList from '@/components/PokemonList'
+import PokemonList from '@/components/pokemon/PokemonList'
 import PokemonListFilters from '@/components/filters/PokemonListFilters'
 
 export default async function Home() {
