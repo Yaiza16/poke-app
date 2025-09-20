@@ -49,6 +49,7 @@ export interface PokemonSpecies {
   id: number
   name: string
   generation: PokemonAPIResourceItem
+  evolution_chain: { url: string }
 }
 
 // Pokemon Types

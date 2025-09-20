@@ -1,5 +1,4 @@
 import usePokemon from '@/lib/queries/usePokemon'
-import usePokemonSpecies from '@/lib/queries/usePokemonSpecies'
 import Image from 'next/image'
 import React from 'react'
 import { Card, CardContent } from './ui/card'
@@ -7,6 +6,7 @@ import { Badge } from './ui/badge'
 import { getTypeColors } from '@/lib/constants/pokemon-type-colors'
 import { PokemonBasicItem } from '@/types/pokemon'
 import { capitalize } from '@/lib/utilities'
+import { usePokemonSpecies } from '@/lib/queries'
 
 const PokemonCard = ({ pokemonBasic }: { pokemonBasic: PokemonBasicItem }) => {
   const { data: pokemon, isLoading: pokemonLoading, error: pokemonError } = usePokemon(pokemonBasic.id)

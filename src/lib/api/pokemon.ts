@@ -1,4 +1,4 @@
-import { Pokemon, PokemonAPIResourceList } from '@/types'
+import { EvolutionChainResponse, Pokemon, PokemonAPIResourceList } from '@/types'
 import { apiClient } from './client'
 import { GenerationPokemonResponse, PokemonBasicItem, PokemonSpecies, TypePokemonResponse } from '@/types/pokemon'
 
@@ -39,8 +39,13 @@ export class PokemonService {
     return response.data.pokemon_species.map(p => this.extractIdFromUrl(p.url))
   }
 
-  static async getPokemonSpecieByPokemonId(id: number): Promise<PokemonSpecies> {
+  static async getPokemonSpecieByPokemonId(id: number | string): Promise<PokemonSpecies> {
     const { data } = await apiClient.get<PokemonSpecies>(`/pokemon-species/${id}`)
+    return data
+  }
+
+  static async getEvolutionChainByUrl(url: string): Promise<EvolutionChainResponse> {
+    const { data } = await apiClient.get<EvolutionChainResponse>(url.replace('https://pokeapi.co/api/v2', ''))
     return data
   }
 
