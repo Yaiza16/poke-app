@@ -1,5 +1,4 @@
 import { Pokemon, PokemonAPIResourceItem } from '@/types'
-import React from 'react'
 import { capitalize, formatGenerationName } from '@/lib/utilities'
 import TypeBadge from '../pokemon/TypeBadge'
 import { PokemonDetailBasicInfo, PokemonDetailContainerCard, PokemonDetailImage } from '.'
