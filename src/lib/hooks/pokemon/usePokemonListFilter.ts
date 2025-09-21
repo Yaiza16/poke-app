@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { usePokemonFiltersStore } from '../stores/PokemonFiltersStore'
-import { usePokemonList } from './usePokemonList'
+import { usePokemonFiltersStore } from '../../stores/PokemonFiltersStore'
+import { usePokemonList } from '../../queries/usePokemonList'
 import { usePokemonSearch } from './usePokemonSearch'
 import { usePokemonFiltersLogic } from './usePokemonFiltersLogic'
 

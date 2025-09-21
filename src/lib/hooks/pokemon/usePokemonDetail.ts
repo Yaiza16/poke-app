@@ -1,5 +1,5 @@
-import { usePokemonSpecies } from './usePokemonSpecies'
-import usePokemon from './usePokemon'
+import { usePokemonSpecies } from '../../queries/usePokemonSpecies'
+import usePokemon from '../../queries/usePokemon'
 
 export const usePokemonDetail = (id: number) => {
   const pokemonQuery = usePokemon(id)

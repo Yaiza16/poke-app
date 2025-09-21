@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search, X } from 'lucide-react'
 import { usePokemonFiltersStore } from '@/lib/stores/PokemonFiltersStore'
-import { useDebounce } from '@/lib/hooks/useDebounce'
+import { useDebounce } from '@/lib/hooks/ui/useDebounce'
 
 const PokemonSearchInput = () => {
   const { filters, setSearch } = usePokemonFiltersStore()

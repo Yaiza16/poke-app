@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
-import { usePagination } from './usePagination'
-import { usePokemonListFilter } from '../queries'
-import { usePokemonFiltersStore } from '../stores/PokemonFiltersStore'
+import { usePagination } from '../ui/usePagination'
+import { usePokemonListFilter } from '../../queries'
+import { usePokemonFiltersStore } from '../../stores/PokemonFiltersStore'
 
 const ITEMS_PER_PAGE = 20
 

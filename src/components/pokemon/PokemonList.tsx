@@ -1,6 +1,6 @@
 'use client'
 
-import { usePokemonPagination } from '@/lib/hooks/usePokemonPagination'
+import { usePokemonPagination } from '@/lib/hooks/pokemon/usePokemonPagination'
 import PokemonCard from './PokemonCard'
 import PokemonPagination from './PokemonPagination'
 import SpinnerLoadingPokemon from '../spinners/SpinnerLoadingPokemon'

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { usePokemonFiltersStore } from '../stores/PokemonFiltersStore'
-import { usePokemonByGeneration } from './usePokemonBygeneration'
-import { usePokemonByType } from './usePokemonByType'
+import { usePokemonFiltersStore } from '../../stores/PokemonFiltersStore'
+import { usePokemonByGeneration } from '../../queries/usePokemonBygeneration'
+import { usePokemonByType } from '../../queries/usePokemonByType'
 import { PokemonBasicItem } from '@/types/pokemon'
 
 export const usePokemonFiltersLogic = (allPokemon: PokemonBasicItem[]) => {

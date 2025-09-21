@@ -1,4 +1,4 @@
-import { usePagination } from '@/lib/hooks/usePagination'
+import { usePagination } from '@/lib/hooks/ui/usePagination'
 import { renderHook } from '@testing-library/react'
 
 interface PaginationOptions {

@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query'
-import { PokemonService } from '../api'
-import { extractEvolutionFamily } from '../utilities/evolution-utils'
+import { PokemonService } from '../../api'
+import { extractEvolutionFamily } from '../../utilities/evolution-utils'
 import { PokemonBasicItem } from '@/types/pokemon'
 import { useMemo } from 'react'
 
@@ -39,7 +39,7 @@ export const usePokemonEvolutionSearch = (
   const evolutionQueries = useQueries({
     queries: evolutionUrls.map(url => ({
       queryKey: ['evolution-chain-search', url],
-      queryFn: () => PokemonService.getEvolutionChainByUrl(url!), 
+      queryFn: () => PokemonService.getEvolutionChainByUrl(url!),
       staleTime: Infinity,
       retry: 1,
       throwOnError: false,

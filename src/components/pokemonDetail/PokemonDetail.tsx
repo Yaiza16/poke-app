@@ -1,6 +1,6 @@
 'use client'
 
-import { usePokemonDetail } from '@/lib/queries/usePokemonDetail'
+import { usePokemonDetail } from '@/lib/hooks/pokemon/usePokemonDetail'
 import { extractEvolutionFamily } from '@/lib/utilities/evolution-utils'
 import { useParams } from 'next/navigation'
 import { SkeletonPokemonDetail } from '../skeletons'

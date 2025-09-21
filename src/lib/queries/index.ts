@@ -1,6 +1,6 @@
 export { usePokemonList } from './usePokemonList'
-export { usePokemonListFilter } from './usePokemonListFilter'
+export { usePokemonListFilter } from '../hooks/pokemon/usePokemonListFilter'
 export { usePokemonSpecies } from './usePokemonSpecies'
 export { useEvolutionChain } from './useEvolutionChain'
 export { usePokemonByType } from './usePokemonByType'
-export { usePokemonFiltersLogic } from './usePokemonFiltersLogic'
+export { usePokemonFiltersLogic } from '../hooks/pokemon/usePokemonFiltersLogic'
