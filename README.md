@@ -2,6 +2,10 @@
 
 Una aplicación web moderna para explorar y descubrir información detallada de Pokemon, construida con Next.js 14, TypeScript y React.
 
+## 🌐 Demo en Vivo
+
+**[Ver aplicación desplegada](https://poke-app-amber-nine.vercel.app/)**
+
 ## ✨ Características Principales
 
 - **Listado completo** de Pokemon con paginación inteligente
@@ -25,10 +29,12 @@ Una aplicación web moderna para explorar y descubrir información detallada de 
 ## 🚀 Instalación y Uso
 
 ### Prerrequisitos
-- Node.js 20+ 
-- npm 
+
+- Node.js 20+
+- npm
 
 ### Instalación
+
 ```bash
 # Clonar repositorio
 git clone https://github.com/Yaiza16/poke-app.git
