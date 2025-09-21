@@ -1,6 +1,5 @@
 import React from 'react'
 import { PokemonDetailContainerCard } from '../pokemonDetail'
-import { AlertTriangle, RefreshCw } from 'lucide-react'
 
 interface PokemonEvolutionChainErrorProps {
   message?: string

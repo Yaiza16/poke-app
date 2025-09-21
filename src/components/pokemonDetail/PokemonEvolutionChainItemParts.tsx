@@ -1,4 +1,5 @@
 import { getTypeColors } from '@/lib/constants/pokemon-type-colors'
+import { Pokemon } from '@/types'
 
 const CurrentPokemonGlow = ({ isCurrent }: { isCurrent: boolean }) =>
   isCurrent ? (
@@ -22,7 +23,7 @@ const CurrentPokemonIndicator = ({
     </>
   ) : null
 
-const PokemonInfo = ({ pokemon, isCurrent }: { pokemon: any; isCurrent: boolean }) => (
+const PokemonInfo = ({ pokemon, isCurrent }: { pokemon: Pokemon; isCurrent: boolean }) => (
   <div className="text-center space-y-1">
     <p
       className={`

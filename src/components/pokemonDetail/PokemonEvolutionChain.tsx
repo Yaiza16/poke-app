@@ -9,25 +9,18 @@ interface PokemonEvolutionChainProps {
 }
 
 export const PokemonEvolutionChain = ({ evolutionUrl }: PokemonEvolutionChainProps) => {
-  if (!evolutionUrl) {
-    return <PokemonEvolutionChainEmpty />
-  }
+  const { data, error, isLoading } = useEvolutionChain(evolutionUrl || '', { enabled: !!evolutionUrl })
 
-  const { data, error, isLoading } = useEvolutionChain(evolutionUrl, { enabled: !!evolutionUrl })
+  if (!evolutionUrl) return <PokemonEvolutionChainEmpty />
 
-  if (isLoading) {
-    return <SkeletonPokemonEvolutionChain />
-  }
+  if (isLoading) return <SkeletonPokemonEvolutionChain />
 
-  if (error || !data) {
-    return <PokemonEvolutionChainError message={'No evolution data available'} />
-  }
+  if (error || !data) return <PokemonEvolutionChainError message={'No evolution data available'} />
 
   const evolutionData = extractEvolutionFamily(data)
 
-  if (evolutionData.length === 0) {
-    return <PokemonEvolutionChainEmpty />
-  }
+  if (evolutionData.length === 0) return <PokemonEvolutionChainEmpty />
+
   return (
     <PokemonDetailContainerCard>
       <div className="space-y-6">

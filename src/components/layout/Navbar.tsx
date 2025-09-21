@@ -34,7 +34,7 @@ const Navbar = () => {
                 PokéApp
               </h1>
               <p className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                Gotta catch 'em all
+                Gotta catch &apos;em all
               </p>
             </div>
           </button>

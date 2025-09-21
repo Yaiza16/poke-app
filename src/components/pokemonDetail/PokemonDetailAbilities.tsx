@@ -8,7 +8,7 @@ export const PokemonDetailAbilities = ({ abilities }: { abilities: PokemonAbilit
     <PokemonDetailContainerCard>
       <h3 className="text-xl font-bold text-white mb-4">Abilities</h3>
       <div className="space-y-3">
-        {abilities.map((ability: any) => (
+        {abilities.map(ability => (
           <div
             key={ability.ability.name}
             className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg border border-slate-600/30"

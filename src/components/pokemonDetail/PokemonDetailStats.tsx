@@ -1,18 +1,7 @@
 import React from 'react'
 import { PokemonStat } from '@/types/pokemon'
-import { Heart, Shield, Star, Wind, Zap, Activity } from 'lucide-react'
 import { PokemonDetailContainerCard } from './PokemonDetailContainerCard'
 import { PokemonDetailStatBar } from './PokemonDetailStatBar'
-
-
-const STATS_ICONS = {
-  hp: Heart,
-  attack: Zap,
-  defense: Shield,
-  'special-attack': Star,
-  'special-defense': Activity,
-  speed: Wind,
-}
 
 interface PokemonDetailStatsProps {
   stats: PokemonStat[]
@@ -24,7 +13,7 @@ export const PokemonDetailStats = ({ stats, type }: PokemonDetailStatsProps) => 
     <PokemonDetailContainerCard>
       <h3 className="text-xl font-bold text-white mb-6">Stats</h3>
       <div className="space-y-4">
-        {stats?.map((stat: any) => (
+        {stats?.map((stat) => (
           <PokemonDetailStatBar key={stat.stat.name} stat={stat} type={type} />
         ))}
       </div>

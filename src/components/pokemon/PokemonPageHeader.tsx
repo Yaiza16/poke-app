@@ -1,4 +1,3 @@
-
 const PokemonPageHeader = () => {
   return (
     <div className="text-center w-full mb-8">
@@ -8,7 +7,7 @@ const PokemonPageHeader = () => {
         </h1>
         <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
           Discover, explore and catch all your favorite Pokémon. Filter by type, generation, or search by name to find
-          exactly what you're looking for.
+          exactly what you&apos;re looking for.
         </p>
         <div className="flex items-center justify-center gap-2 mt-6">
           <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
