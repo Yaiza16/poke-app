@@ -3,19 +3,32 @@ import React from 'react'
 import { PokemonDetailContainerCard, PokemonEvolutionChainItem } from '.'
 import { useEvolutionChain } from '@/lib/queries'
 import { extractEvolutionFamily } from '@/lib/utilities/evolution-utils'
+import { SkeletonPokemonEvolutionChain, PokemonEvolutionChainError, PokemonEvolutionChainEmpty } from '../skeletons'
 
 interface PokemonEvolutionChainProps {
   evolutionUrl: string | null
 }
 
 export const PokemonEvolutionChain = ({ evolutionUrl }: PokemonEvolutionChainProps) => {
-  if (!evolutionUrl) return <div>No evolution data available.</div>
+  if (!evolutionUrl) {
+    return <PokemonEvolutionChainEmpty />
+  }
+
   const { data, error, isLoading } = useEvolutionChain(evolutionUrl, { enabled: !!evolutionUrl })
 
-  if (isLoading) return <div>Loading evolution data...</div>
-  if (error) return <div>Error loading evolution data.</div>
-  if (!data) return <div>No evolution data available.</div>
-  const evolutionData = data ? extractEvolutionFamily(data) : []
+  if (isLoading) {
+    return <SkeletonPokemonEvolutionChain />
+  }
+
+  if (error || !data) {
+    return <PokemonEvolutionChainError message={'No evolution data available'} />
+  }
+
+  const evolutionData = extractEvolutionFamily(data)
+
+  if (evolutionData.length === 0) {
+    return <PokemonEvolutionChainEmpty />
+  }
   return (
     <PokemonDetailContainerCard>
       <div className="space-y-6">
