@@ -4,6 +4,7 @@ import './globals.css'
 import Providers from './providers'
 import Navbar from '@/components/layout/Navbar'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import { siteMetadata } from '@/lib/utilities/metadata'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -15,12 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-export const metadata: Metadata = {
-  title: "PokéApp - Gotta catch 'em all",
-  description: 'Explore and discover all Pokémon with filters, search, and detailed information',
-  keywords: ['pokemon', 'pokedex', 'pokemon app', 'pokemon search', 'pokemon evolution', 'pokemon types'],
-  authors: [{ name: 'Yaiza Vallejo' }],
-}
+export const metadata: Metadata = siteMetadata
 
 export default function RootLayout({
   children,

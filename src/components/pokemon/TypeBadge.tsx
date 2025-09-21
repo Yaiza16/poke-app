@@ -1,3 +1,5 @@
+'use client'
+
 import { getTypeColors } from '@/lib/constants/pokemon-type-colors'
 import { useEffect, useState } from 'react'
 import { Badge } from '../ui/badge'
@@ -9,7 +11,6 @@ const TypeBadge = ({ type, delay = 0 }: { type: string; delay?: number }) => {
     const timer = setTimeout(() => setIsVisible(true), delay)
     return () => clearTimeout(timer)
   }, [delay])
-
 
   return (
     <Badge

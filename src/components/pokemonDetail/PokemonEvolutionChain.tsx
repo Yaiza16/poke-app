@@ -1,4 +1,3 @@
-import { PokemonBasicItem } from '@/types/pokemon'
 import React from 'react'
 import { PokemonDetailContainerCard, PokemonEvolutionChainItem } from '.'
 import { useEvolutionChain } from '@/lib/queries'

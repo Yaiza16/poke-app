@@ -1,3 +1,5 @@
+'use client'
+
 import { Pokemon } from '@/types'
 import { getTypeColors } from '@/lib/constants/pokemon-type-colors'
 import Image from 'next/image'
