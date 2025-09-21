@@ -9,8 +9,7 @@ import { PokemonDetailAbilities, PokemonDetailGoBackButton, PokemonDetailMainInf
 
 const PokemonDetail = () => {
   const { id } = useParams()
-  const { pokemon, evolutionChain, isLoading, error } = usePokemonDetail(Number(id))
-
+  const { pokemon, species,evolutionChain, isLoading, error } = usePokemonDetail(Number(id))
   if (isLoading) return <SkeletonPokemonDetail />
 
   if (error || !pokemon) return <PokemonDetailNotFound />
@@ -23,7 +22,7 @@ const PokemonDetail = () => {
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-6">
-          <PokemonDetailMainInfo pokemon={pokemon} />
+          <PokemonDetailMainInfo pokemon={pokemon} generation={species?.generation} />
           <PokemonDetailAbilities abilities={pokemon.abilities} />
         </div>
 
