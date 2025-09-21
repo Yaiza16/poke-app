@@ -5,6 +5,7 @@ interface PokemonFilters {
   search: string
   type: string
   generation: string
+  currentPage: number
 }
 
 interface PokemonFiltersStore {
@@ -13,6 +14,8 @@ interface PokemonFiltersStore {
   setType: (type: string) => void
   setGeneration: (generation: string) => void
   clearFilters: () => void
+  setCurrentPage: (page: number) => void
+  resetPageOnFiltersChange: () => void
 }
 
 export const usePokemonFiltersStore = create<PokemonFiltersStore>()(
@@ -23,6 +26,7 @@ export const usePokemonFiltersStore = create<PokemonFiltersStore>()(
           search: '',
           type: '',
           generation: '',
+          currentPage: 1,
         },
 
         setSearch: (search: string) =>
@@ -40,13 +44,25 @@ export const usePokemonFiltersStore = create<PokemonFiltersStore>()(
             filters: { ...state.filters, generation },
           })),
 
+        setCurrentPage: currentPage => {
+          set(state => ({
+            filters: { ...state.filters, currentPage },
+          }))
+        },
+
         clearFilters: () =>
           set({
-            filters: { search: '', type: '', generation: '' },
+            filters: { search: '', type: '', generation: '', currentPage: 1 },
           }),
+        resetPageOnFiltersChange: () => {
+          set(state => ({
+            filters: { ...state.filters, currentPage: 1 },
+          }))
+        },
       }),
       {
         name: 'pokemon-filters',
+        partialize: state => ({ filters: state.filters }),
       }
     ),
     { name: 'PokemonFiltersStore' }

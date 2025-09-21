@@ -1,16 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import { usePagination } from './usePagination'
 import { usePokemonListFilter } from '../queries'
+import { usePokemonFiltersStore } from '../stores/PokemonFiltersStore'
 
 const ITEMS_PER_PAGE = 20
 
 export const usePokemonPagination = () => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const { filters, setCurrentPage } = usePokemonFiltersStore()
   const { data: allFilteredPokemon, isLoading, error, filteredCount, totalCount } = usePokemonListFilter()
-
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [filteredCount])
 
   useEffect(() => {
     const filtersElement = document.getElementById('pokemon-filters')
@@ -22,15 +19,14 @@ export const usePokemonPagination = () => {
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-  }, [currentPage])
+  }, [filters.currentPage])
 
   const pagination = usePagination({
     totalItems: filteredCount,
     itemsPerPage: ITEMS_PER_PAGE,
-    currentPage,
+    currentPage: filters.currentPage,
   })
 
-  // Pokemon paginados
   const paginatedPokemon = useMemo(() => {
     if (!allFilteredPokemon) return []
 

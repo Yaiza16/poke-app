@@ -1,4 +1,4 @@
-import { usePokemonFiltersStore } from '@/lib/stores/pokemon-filters-store'
+import { usePokemonFiltersStore } from '@/lib/stores/PokemonFiltersStore'
 import { Button } from '../ui/button'
 import { RotateCcw } from 'lucide-react'
 

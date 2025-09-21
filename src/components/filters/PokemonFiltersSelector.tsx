@@ -1,10 +1,9 @@
 import useAllPokemonTypes from '@/lib/queries/useAllPokemonTypes'
-import { usePokemonFiltersStore } from '@/lib/stores/pokemon-filters-store'
+import { usePokemonFiltersStore } from '@/lib/stores/PokemonFiltersStore'
 import { capitalize, formatGenerationName } from '@/lib/utilities'
 import useAllPokemonGenerations from '@/lib/queries/useAllPokemonGenerations'
 import SkeletonPokemonFilterInput from '../skeletons/SkeletonPokemonFilterInput'
 import SelectFilter from './SelectFilter'
-
 
 const PokemonFiltersSelector = () => {
   const { filters, setType, setGeneration } = usePokemonFiltersStore()
