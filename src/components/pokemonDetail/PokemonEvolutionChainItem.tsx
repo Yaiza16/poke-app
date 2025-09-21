@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { getTypeColors } from '@/lib/constants/pokemon-type-colors'
 import usePokemon from '@/lib/queries/usePokemon'
 import Link from 'next/link'
@@ -5,7 +7,6 @@ import { useParams } from 'next/navigation'
 import { SkeletonPokemonEvolution } from '../skeletons'
 import { PokemonImage } from '../pokemon/PokemonImage'
 import { CurrentPokemonGlow, CurrentPokemonIndicator, PokemonInfo } from './PokemonEvolutionChainItemParts'
-
 
 const getCurrentPokemonStyles = (typeColors: ReturnType<typeof getTypeColors>) => `
   bg-gradient-to-br from-slate-700/80 via-slate-800/80 to-slate-900/80 
@@ -17,8 +18,11 @@ const getDefaultStyles = () => `
   hover:bg-gradient-to-br hover:from-slate-700/60 hover:to-slate-800/60 
   hover:border-slate-500/60
 `
+interface PokemonEvolutionChainItemProps {
+  id: number
+}
 
-export const PokemonEvolutionChainItem = ({ id }: { id: number }) => {
+export const PokemonEvolutionChainItem: React.FC<PokemonEvolutionChainItemProps> = ({ id }) => {
   const { id: currentPokemonId } = useParams()
   const isCurrent = id === Number(currentPokemonId)
   const { data, isLoading, error } = usePokemon(id)
