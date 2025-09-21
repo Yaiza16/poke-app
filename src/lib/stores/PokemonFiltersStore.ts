@@ -31,17 +31,17 @@ export const usePokemonFiltersStore = create<PokemonFiltersStore>()(
 
         setSearch: (search: string) =>
           set(state => ({
-            filters: { ...state.filters, search },
+            filters: { ...state.filters, search, currentPage: 1 },
           })),
 
         setType: (type: string) =>
           set(state => ({
-            filters: { ...state.filters, type },
+            filters: { ...state.filters, type, currentPage: 1 },
           })),
 
         setGeneration: (generation: string) =>
           set(state => ({
-            filters: { ...state.filters, generation },
+            filters: { ...state.filters, generation, currentPage: 1 },
           })),
 
         setCurrentPage: currentPage => {
