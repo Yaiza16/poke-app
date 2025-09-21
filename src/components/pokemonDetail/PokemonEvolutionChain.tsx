@@ -1,14 +1,21 @@
 import { PokemonBasicItem } from '@/types/pokemon'
 import React from 'react'
 import { PokemonDetailContainerCard, PokemonEvolutionChainItem } from '.'
+import { useEvolutionChain } from '@/lib/queries'
+import { extractEvolutionFamily } from '@/lib/utilities/evolution-utils'
 
 interface PokemonEvolutionChainProps {
-  evolutionData: PokemonBasicItem[]
+  evolutionUrl: string | null
 }
 
-export const PokemonEvolutionChain = ({ evolutionData }: PokemonEvolutionChainProps) => {
-  if (!evolutionData || evolutionData.length === 0) return null
+export const PokemonEvolutionChain = ({ evolutionUrl }: PokemonEvolutionChainProps) => {
+  if (!evolutionUrl) return <div>No evolution data available.</div>
+  const { data, error, isLoading } = useEvolutionChain(evolutionUrl, { enabled: !!evolutionUrl })
 
+  if (isLoading) return <div>Loading evolution data...</div>
+  if (error) return <div>Error loading evolution data.</div>
+  if (!data) return <div>No evolution data available.</div>
+  const evolutionData = data ? extractEvolutionFamily(data) : []
   return (
     <PokemonDetailContainerCard>
       <div className="space-y-6">

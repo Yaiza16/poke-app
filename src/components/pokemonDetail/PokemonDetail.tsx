@@ -4,17 +4,21 @@ import { usePokemonDetail } from '@/lib/queries/usePokemonDetail'
 import { extractEvolutionFamily } from '@/lib/utilities/evolution-utils'
 import { useParams } from 'next/navigation'
 import { SkeletonPokemonDetail } from '../skeletons'
-import { PokemonDetailAbilities, PokemonDetailGoBackButton, PokemonDetailMainInfo, PokemonDetailNotFound, PokemonDetailStats, PokemonEvolutionChain } from '.'
-
+import {
+  PokemonDetailAbilities,
+  PokemonDetailGoBackButton,
+  PokemonDetailMainInfo,
+  PokemonDetailNotFound,
+  PokemonDetailStats,
+  PokemonEvolutionChain,
+} from '.'
 
 const PokemonDetail = () => {
   const { id } = useParams()
-  const { pokemon, species,evolutionChain, isLoading, error } = usePokemonDetail(Number(id))
+  const { pokemon, species, isLoading, errorPokemon } = usePokemonDetail(Number(id))
   if (isLoading) return <SkeletonPokemonDetail />
 
-  if (error || !pokemon) return <PokemonDetailNotFound />
-
-  const evolutionFamily = evolutionChain ? extractEvolutionFamily(evolutionChain) : []
+  if (errorPokemon || !pokemon) return <PokemonDetailNotFound />
 
   return (
     <>
@@ -28,7 +32,7 @@ const PokemonDetail = () => {
 
         <div className="space-y-6">
           <PokemonDetailStats stats={pokemon.stats} type={pokemon.types[0].type.name} />
-          <PokemonEvolutionChain evolutionData={evolutionFamily} />
+          <PokemonEvolutionChain evolutionUrl={species?.evolution_chain?.url || null} />
         </div>
       </div>
     </>
