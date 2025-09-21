@@ -13,6 +13,7 @@ import { SkeletonPokemonCard } from '../skeletons/SkeletonPokemonCard'
 import { SkeletonPokemonCardError } from '../skeletons'
 import { PokemonImage } from './PokemonImage'
 import Link from 'next/link'
+import { Star, TriangleAlert, Zap } from 'lucide-react'
 
 const formatGeneration = (genName: string) => {
   const genNumber = genName.split('-')[1]
@@ -24,7 +25,7 @@ const PokemonCard = ({ pokemonBasic }: { pokemonBasic: PokemonBasicItem }) => {
   const { data: species, isLoading: speciesLoading, error: speciesError } = usePokemonSpecies(pokemonBasic.id)
 
   if (pokemonLoading || speciesLoading) return <SkeletonPokemonCard className="w-[320px] h-[586px]" />
-  if (pokemonError || speciesError) return <SkeletonPokemonCardError className="w-[320px] h-[586px]" />
+  if (pokemonError) return <SkeletonPokemonCardError className="w-[320px] h-[586px]" />
   if (!pokemon) return <div>No data</div>
 
   return (
@@ -59,16 +60,20 @@ const PokemonCard = ({ pokemonBasic }: { pokemonBasic: PokemonBasicItem }) => {
           <div className="mb-6 grid grid-cols-2 gap-4">
             <AnimatedStat
               label="Generation"
-              value={species ? formatGeneration(species.generation.name) : 'Loading...'}
+              value={species ? formatGeneration(species.generation.name) : speciesError ? 'Not found' : 'Loading...'}
               delay={200}
-              icon="🌟"
+              icon={speciesError ? <TriangleAlert size={16} /> : <Star size={16} />}
+              type={speciesError ? 'error' : 'default'}
             />
-            <AnimatedStat label="Base EXP" value={pokemon.base_experience?.toString() || 'N/A'} delay={400} icon="⚡" />
+            <AnimatedStat
+              label="Base EXP"
+              value={pokemon.base_experience?.toString() || 'N/A'}
+              delay={400}
+              icon={<Zap size={16} />}
+            />
           </div>
           {pokemon.abilities && pokemon.abilities.length > 0 && <PokemonAbilities pokemon={pokemon} />}
           {pokemon.types && pokemon.types.length > 0 && <PokemonTypes pokemon={pokemon} />}
-
-          {speciesError && <small className="text-yellow-600">⚠️ Generation info unavailable</small>}
         </CardContent>
       </Card>
     </Link>
