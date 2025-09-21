@@ -18,6 +18,17 @@ const PokemonList = () => {
 
   return (
     <div className="w-full flex-1">
+      <div className="flex justify-center  mb-8">
+        <PokemonPagination
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+          hasNextPage={pagination.hasNextPage}
+          hasPreviousPage={pagination.hasPreviousPage}
+          isFirstPage={pagination.isFirstPage}
+          isLastPage={pagination.isLastPage}
+          onPageChange={pagination.onPageChange}
+        />
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-auto gap-8 justify-items-center">
         {pokemon.map(pokemon => (
           <PokemonCard key={pokemon.name} pokemonBasic={pokemon} />
