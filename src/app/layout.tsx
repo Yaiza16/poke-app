@@ -18,6 +18,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PokéApp - Gotta catch 'em all",
   description: 'Explore and discover all Pokémon with filters, search, and detailed information',
+  keywords: ['pokemon', 'pokedex', 'pokemon app', 'pokemon search', 'pokemon evolution', 'pokemon types'],
+  authors: [{ name: 'Yaiza Vallejo' }],
 }
 
 export default function RootLayout({
